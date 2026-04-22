@@ -3,7 +3,7 @@
 // Printing Variable Values, by Eduardo Corpeño
 
 #include <iostream>
-
+using namespace std;
 class Battery{
 private:
     double charge;
@@ -16,10 +16,14 @@ public:
 
     void simulateUsage(int hours){
         for(int i = 1; i <= hours; i++){
-            if(charge > 20)
-                charge -= normalDrain;  // Normal power usage
-            else
+            cout<<charge<<'%'<<endl;
+            if(charge > 20){
+                cout<<"normalDrain";
+                charge -= normalDrain; } // Normal power usage
+            else{
+                cout<<"lowPowerDrain";
                 charge -= lowPowerDrain; // Reduced drain in power-saving mode
+            }
 
             if(charge < 0) charge = 0; // Prevent negative charge
         }
@@ -37,9 +41,9 @@ int main(){
     Battery myBattery(batteryCapacity, normalDrain, lowPowerDrain);
     myBattery.simulateUsage(hours);
 
-    std::cout << "Battery charge after " << hours << " hours: "
-              << myBattery.getCharge() << "%" << std::endl;
+    cout << "Battery charge after " << hours << " hours: "
+              << myBattery.getCharge() << "%" << endl;
 
-    std::cout << std::endl << std::endl;
+    cout << endl <<endl;
     return 0;
 }
